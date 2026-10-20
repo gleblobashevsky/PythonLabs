@@ -1,23 +1,25 @@
 '''Lobashevsky Gleb R3140 559599'''
-import os;
-
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
+import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1' # строка нужна чтобы при запуске в консоль не выводилась информация про один из используемых модулей
 import tkinter as tk
 from keygen import main_func
 from sound import init_music, stop_music, init_sound, play_click
 
 
 def generate_key(plc):
+    '''Функция для обработки нажания на кнопку btn_key'''
     play_click()
     plc['text'] = main_func()
 
 
 def my_exit(window):
+    '''Функция для завершения работы программы'''
     stop_music()
     window.destroy()
 
 
 def create_components(window, w, h):
+    '''Функция для создания интерфейса с возможностью взаимодействия пользователя'''
     label = tk.Label(window,
                      text='',
                      fg="white",
@@ -62,6 +64,7 @@ def create_components(window, w, h):
 
 
 def init_window():
+    '''Функция инициализации основного окна и его параметров'''
     window = tk.Tk()
     window.overrideredirect(True)
     window.resizable(False, False)
