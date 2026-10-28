@@ -25,7 +25,7 @@ def create_components(window, w, h):
                      fg="white",
                      bg='black',
                      justify='left',
-                     font=('Helvetica 12 bold', 14)
+                     font=('Helvetica bold', 14)
                      )
 
     label.place(x=(w - 550),
