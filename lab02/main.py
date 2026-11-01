@@ -24,10 +24,10 @@ def task1():
 def task2():
     '''Задание 2: Поиск книги по автору + стоимость от 200Р'''
     global data
-    author = input("Choose the current book's author: ")
     flag = False
+    aut = input("Choose the current book's author: ")
     for row in data:
-        if row[2].lower() == author.lower() and float(row[-1].replace(',', '.')) >= 200:
+        if row[2].lower() == aut.lower() and float(row[-1].replace(',', '.')) >= 200:
             print('\t', row[1])
             flag = True
     if not flag:
@@ -43,14 +43,14 @@ def task3():
         remove('bibliographic_references.txt')
     except:
         pass
-    flag = 20
-    while flag:
-        n_row = abs(flag - 20) + 1
+    flag = 0
+    while flag != 20:
+        n_row = flag + 1
         row = content[randint(1, len(content))]
         content.remove(row)
         link = (f'{n_row}) {row[2]}. {row[1]} - {row[3]}')
         print(link, file=open('bibliographic_references.txt', 'a'))
-        flag -= 1
+        flag += 1
 
 
 def task4():
