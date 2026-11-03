@@ -4,8 +4,6 @@ class Character:
         self.stamina = stamina
         self.damage = damage
 
-    # Метод 1: сколько ударов нанесет персонаж, пока не кончится выносливость.
-    # Допустим, 1 удар тратит 10 единиц выносливости.
     def calculate_stamina_hits(self) -> int:
         return self.stamina // 10
 
@@ -18,9 +16,8 @@ class Character:
 class WeakEnemy(Character):
     def __init__(self, hp, stamina, damage, exp):
         super().__init__(hp, stamina, damage)
-        self.exp = exp  # Уникальное поле: сколько опыта дают за убийство
+        self.exp = exp
 
-    # Метод 2: сколько ударов нужно до смерти этого врага
     def hits_to_kill(self, attacker_damage) -> int:
         hits = 0
         current_hp = self.hp
@@ -33,9 +30,8 @@ class WeakEnemy(Character):
 class Boss(Character):
     def __init__(self, hp, stamina, damage, armor):
         super().__init__(hp, stamina, damage)
-        self.armor = armor  # Уникальное поле: защита (броня)
+        self.armor = armor
 
-    # Метод 2: сколько ударов нужно до смерти босса (учитываем броню)
     def hits_to_kill(self, attacker_damage):
         real_damage = attacker_damage - self.armor
 
