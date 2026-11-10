@@ -47,10 +47,10 @@ class Boss(Character):
 
 
 if __name__ == '__main__':
-    # hero = Character(100, 50, 15)
-    # hero2 = Character(100, 50, 15)
-    # slime = WeakEnemy(30, 10, 5, 15)
-    # dragon = Boss(100, 100, 30, 5)
-    # print(hero + slime)
-    # print(hero + hero2)
+    hero = Character(100, 50, 15)
+    hero2 = Character(100, 50, 15)
+    slime = WeakEnemy(30, 10, 5, 15)
+    dragon = Boss(100, 100, 30, 5)
+    print(hero + slime)
+    print(hero + hero2)
     pass
