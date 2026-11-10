@@ -4,7 +4,7 @@ items = [
     ("x", 3, 20), ("t", 1, 25), ("f", 1, 15),
     ("s", 2, 20), ("c", 2, 20)
 ]
-
+BKPK_SIZE = 8
 best = 0
 best_items = []
 combinations = []
@@ -14,14 +14,14 @@ start_cells = 1
 
 for i in range(2 ** len(items)):
     selected = [('d', 1, 10)]
-    used_cells = start_cells
-    score = start_score
+    used_cells = int(start_cells)
+    score = int(start_score)
     comb = bin(i)[2:].zfill(len(items))
     for j in range(len(items)):
         if comb[j] == '1':
             selected.append(items[j])
             used_cells += items[j][1]
-            if used_cells > 8:
+            if used_cells > BKPK_SIZE:
                 break
             score += items[j][2]
 
@@ -45,7 +45,7 @@ def show(selected):
         for _ in range(size):
             cells.append(symbol)
 
-    while len(cells) < 8:
+    while len(cells) < BKPK_SIZE:
         cells.append(" ")
 
     print("[" + "][".join(cells[:4]) + "]")
