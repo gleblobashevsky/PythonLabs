@@ -1,3 +1,4 @@
+import re
 from re import findall
 from itertools import zip_longest
 from csv import writer
@@ -15,26 +16,18 @@ def task1():
 def task2():
     with open('task2.html', encoding='utf-8') as f:
         data = f.read()
-    img = findall(r'<img[^>]+>', data)
-    sizes_w = []
-    sizes_h = []
-    for teg in img:
-        szh = findall(r'(height)=["\']?(\d+)["\']?', teg)
-        szw = findall(r'(width)=["\']?(\d+)["\']?', teg)
-        if len(szw) != 0:
-            sizes_w.append(szw[0][1])
-        if len(szh) != 0:
-            sizes_h.append(szh[0][1])
+    widths = re.findall(r'<img[^>]+?\bwidth\s*=\s*["\']?(\d+)', data)
+    heights = re.findall(r'<img[^>]+?\bheight\s*=\s*["\']?(\d+)', data)
     print('Высоты:  Широты:')
-    for sz in zip_longest(sizes_h, sizes_w, fillvalue=' '):
-        print(str(' ' * (9 - len(sz[0]))).join(sz))
+    for i in zip_longest(heights, widths, fillvalue='   '):
+        print(str(' '*(9-len(i[1]))).join(i))
 
 def task3():
     with open("task3.txt", "r", encoding="utf-8") as f:
         data = f.read()
 
     ids = findall(r"(?<= )\d+(?= )", data)
-    emails = findall(r"[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}", data)
+    emails = findall(r"[a-zA-Z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,}", data)
     dates = findall(r"(?:\d{4}|\d{2})-\d{2}-(?:\d{2}|\d{4})", data)
     urls = findall(r"https?://[^\s\"'<>{}|\\^`[\]]+", data)
     names = findall(r"\b[A-Z][a-z]+(?: [A-Z][a-z]+)?\b", data)
@@ -51,7 +44,7 @@ def task3():
 def add_task():
     with open("task_add.txt", "r", encoding="utf-8") as f:
         data = f.read()
-    emails = findall(r"[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}", data)
+    emails = findall(r"[a-zA-Z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,}", data)
     dates = findall(r'(?:\d{4}|\d{2})[./-]\d{2}[./-](?:\d{2}|\d{4})', data)
     urls = findall(r"https?://[^\s\"'<>{}|\\^`[\]]+", data)
     print(urls)
@@ -63,5 +56,5 @@ if __name__ == '__main__':
     # task1()
     # task2()
     # task3()
-    add_task()
+    # add_task()
     pass
